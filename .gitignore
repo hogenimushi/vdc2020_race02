@@ -1,0 +1,6 @@
+data/*
+models/*
+!.gitkeep
+configs/__pycache__
+scripts/__pycache__
+data_generated_20Hz/generated20to10.sh
