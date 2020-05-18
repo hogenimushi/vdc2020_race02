@@ -253,16 +253,17 @@
 #
 
 
-DRIVE_LOOP_HZ = 20
+DRIVE_LOOP_HZ = 10
 SEQUENCE_LENGTH = 4
 
 JOYSTICK_MAX_THROTTLE = 1.0
 JOYSTICK_STEERING_SCALE = 1.0
 
 DONKEY_GYM = True
-#DONKEY_SIM_PATH = "/home/okuyama/work/donkey/Linux/sdsim_MaximeE.x86_64" 
-DONKEY_SIM_PATH = "remote" 
-DONKEY_GYM_ENV_NAME = "donkey-generated-track-v0" 
+
+DONKEY_SIM_PATH = "./DonkeySimLinux/donkey_sim.x86_64" 
+#DONKEY_SIM_PATH = "remote" 
+DONKEY_GYM_ENV_NAME = "donkey-mountain-track-v0" 
 GYM_CONF = { "body_style" : "donkey", "body_rgb" : (92, 92, 240), "car_name" : "Hogenimushi", "font_size" : 18} # body style(donkey|bare|car01) body rgb 0-255
 
 SIM_HOST = "localhost"
