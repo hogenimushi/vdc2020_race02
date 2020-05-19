@@ -71,4 +71,4 @@ install:
 	make DonkeySimLinux/donkey_sim.x86_64
 
 DonkeySimLinux/donkey_sim.x86_64:
-	wget -O - https://github.com/tawnkramer/gym-donkeycar/releases/tag/v2020.5.16 | unzip -p
+	wget -O - https://github.com/tawnkramer/gym-donkeycar/releases/tag/v2020.5.16 | busybox unzip -
