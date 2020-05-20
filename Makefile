@@ -45,7 +45,7 @@ train:
 prebullt/default.h5: models/default.h5
 	cp $< $@
 
-record: record05
+record: record10
 
 record05:
 	$(PYTHON) manage.py drive --js --myconfig=configs/myconfig_05Hz.py
