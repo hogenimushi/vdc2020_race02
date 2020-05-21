@@ -1,7 +1,7 @@
 #
 # By Hogenimushi
 #
-PYTHON=python
+PYTHON=python3
 SIMULATOR=./DonkeySimLinux/donkey_sim.x86_64
 
 #START_20HZ  = $(shell find data_20Hz -name 'start*' -type d | tr '\n' ' ')
@@ -73,3 +73,8 @@ install:
 DonkeySimLinux/donkey_sim.x86_64:
 	wget -qO- https://github.com/tawnkramer/gym-donkeycar/releases/download/v2020.5.16/DonkeySimLinux.zip | bsdtar -xvf - -C .
 
+kabe0:
+	$(PYTHON) scripts/trimming.py --input data_10Hz/kabe0 --output data/kabe0 --file data_10Hz/kabe0.txt
+
+kabe1:
+	$(PYTHON) scripts/trimming.py --input data_10Hz/kabe1 --output data/kabe1 --file data_10Hz/kabe1.txt
