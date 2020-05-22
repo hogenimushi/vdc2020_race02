@@ -73,6 +73,11 @@ install:
 DonkeySimLinux/donkey_sim.x86_64:
 	wget -qO- https://github.com/tawnkramer/gym-donkeycar/releases/download/v2020.5.16/DonkeySimLinux.zip | bsdtar -xvf - -C .
 
+kabe:
+	make kabe0
+	make kabe1
+	make kabe2
+	make kabe3
 kabe0:
 	$(PYTHON) scripts/trimming.py --input data_10Hz/kabe0 --output data/kabe0 --file data_10Hz/kabe0.txt
 
@@ -81,3 +86,6 @@ kabe1:
 
 kabe2:
 	$(PYTHON) scripts/trimming.py --input data_10Hz/kabe2 --output data/kabe2 --file data_10Hz/kabe2.txt
+
+kabe3:
+	$(PYTHON) scripts/trimming.py --input data_10Hz/kabe3 --output data/kabe3 --file data_10Hz/kabe3.txt
