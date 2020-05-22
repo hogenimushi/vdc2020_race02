@@ -78,3 +78,6 @@ kabe0:
 
 kabe1:
 	$(PYTHON) scripts/trimming.py --input data_10Hz/kabe1 --output data/kabe1 --file data_10Hz/kabe1.txt
+
+kabe2:
+	$(PYTHON) scripts/trimming.py --input data_10Hz/kabe2 --output data/kabe2 --file data_10Hz/kabe2.txt
