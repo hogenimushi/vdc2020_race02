@@ -80,6 +80,7 @@ trim_crash_001:
 
 clean:
 	rm -fr models/*
+	rm -rf data/*
 
 install: 
 	make DonkeySimLinux/donkey_sim.x86_64
