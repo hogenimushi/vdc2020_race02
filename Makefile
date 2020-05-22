@@ -108,6 +108,12 @@ kabe_003:
 kabe_004:
 	$(PYTHON) scripts/trimming.py --input data_10Hz/kabe_004 --output data/kabe_004 --file data_10Hz/kabe_004.txt
 
+dakou:
+	make dakoumigi_001
+
+dakoumigi_001:
+	$(PYTHON) scripts/trimming.py --input data_10Hz/dakoumigi_001 --output data/dakoumigi_001 --file data_10Hz/dakoumigi_001.txt
+
 sayu:
 	make right
 	make left
@@ -130,3 +136,4 @@ models/seq3.h5: $(DATASET_SEQ3)
 dataset:
 	make kabe
 	make sayu
+	make dakou
