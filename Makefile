@@ -44,6 +44,9 @@ sim:
 run: prebuilt/default.h5
 	$(PYTHON) manage.py drive --model=$< --type=rnn --myconfig=configs/myconfig_10Hz.py
 
+run_linear: prebuilt/linear.h5
+	$(PYTHON) manage.py drive --model=$< --type=linear --myconfig=configs/myconfig_10Hz.py
+
 race: prebuilt/default.h5
 	$(PYTHON) manage.py drive --model=$< --type=rnn --myconfig=configs/race_10Hz.py
 
