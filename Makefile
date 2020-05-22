@@ -89,3 +89,13 @@ kabe2:
 
 kabe3:
 	$(PYTHON) scripts/trimming.py --input data_10Hz/kabe3 --output data/kabe3 --file data_10Hz/kabe3.txt
+
+sayu:
+	make right
+	make left
+
+right:
+	$(PYTHON) scripts/trimming.py --input data_10Hz/right_001/ --output data/trimright --file data_10Hz/trimright.txt
+
+left:
+	$(PYTHON) scripts/trimming.py --input data_10Hz/left_001/ --output data/trimleft --file data_10Hz/trimleft.txt
