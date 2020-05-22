@@ -88,21 +88,21 @@ DonkeySimLinux/donkey_sim.x86_64:
 	wget -qO- https://github.com/tawnkramer/gym-donkeycar/releases/download/v2020.5.16/DonkeySimLinux.zip | bsdtar -xvf - -C .
 
 kabe:
-	make kabe0
-	make kabe1
-	make kabe2
-	make kabe3
-kabe0:
-	$(PYTHON) scripts/trimming.py --input data_10Hz/kabe0 --output data/kabe0 --file data_10Hz/kabe0.txt
+	make kabe_001
+	make kabe_002
+	make kabe_003
+	make kabe_004
+kabe_001:
+	$(PYTHON) scripts/trimming.py --input data_10Hz/kabe_001 --output data/kabe_001 --file data_10Hz/kabe_001.txt
 
-kabe1:
-	$(PYTHON) scripts/trimming.py --input data_10Hz/kabe1 --output data/kabe1 --file data_10Hz/kabe1.txt
+kabe_002:
+	$(PYTHON) scripts/trimming.py --input data_10Hz/kabe_002 --output data/kabe_002 --file data_10Hz/kabe_002.txt
 
-kabe2:
-	$(PYTHON) scripts/trimming.py --input data_10Hz/kabe2 --output data/kabe2 --file data_10Hz/kabe2.txt
+kabe_003:
+	$(PYTHON) scripts/trimming.py --input data_10Hz/kabe_003 --output data/kabe_003 --file data_10Hz/kabe_003.txt
 
-kabe3:
-	$(PYTHON) scripts/trimming.py --input data_10Hz/kabe3 --output data/kabe3 --file data_10Hz/kabe3.txt
+kabe_004:
+	$(PYTHON) scripts/trimming.py --input data_10Hz/kabe_004 --output data/kabe_004 --file data_10Hz/kabe_004.txt
 
 sayu:
 	make right
