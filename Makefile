@@ -20,6 +20,12 @@ SIMULATOR=./DonkeySimLinux/donkey_sim.x86_64
 DATASET_10Hz = $(shell find data_10Hz -type d | sed -e '1d' | tr '\n' ' ')
 DATASET_05Hz = $(shell find data_05Hz -type d | sed -e '1d' | tr '\n' ' ')
 
+DATASET = $(shell find data -type d | sed -e '1d' | tr '\n' ' ')
+START = $(shell find data_10Hz -name 'start*' -type d | tr '\n' ' ')
+PRE = $(shell find data_10Hz -name 'pre*' -type d | tr '\n' ' ')
+DAKOU = $(shell find data_10Hz -name 'dakou' -type d | tr '\n' ' ')
+DATASET_LINEAR = $(DATASET) $(START) $(PRE) $(DAKOU)
+
 COMMA=,
 EMPTY=
 SPACE=$(EMPTY) $(EMPTY)
@@ -99,3 +105,6 @@ right:
 
 left:
 	$(PYTHON) scripts/trimming.py --input data_10Hz/left_001/ --output data/trimleft --file data_10Hz/trimleft.txt
+
+models/linear.h5: $(DATASET_LINEAR)
+	TF_FORCE_GPU_ALLOW_GROWTH=true $(PYTHON) manage.py train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --myconfig=configs/myconfig_10Hz.py
