@@ -101,10 +101,10 @@ sayu:
 	make left
 
 right:
-	$(PYTHON) scripts/trimming.py --input data_10Hz/right_001/ --output data/trimright --file data_10Hz/trimright.txt
+	$(PYTHON) scripts/trimming.py --input data_10Hz/right_001/ --output data/trimright --num 579 1675
 
 left:
-	$(PYTHON) scripts/trimming.py --input data_10Hz/left_001/ --output data/trimleft --file data_10Hz/trimleft.txt
+	$(PYTHON) scripts/trimming.py --input data_10Hz/left_001/ --output data/trimleft --num 571 1734
 
 models/linear.h5: $(DATASET_LINEAR)
 	TF_FORCE_GPU_ALLOW_GROWTH=true $(PYTHON) manage.py train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --myconfig=configs/myconfig_10Hz.py
