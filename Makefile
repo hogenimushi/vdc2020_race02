@@ -20,13 +20,14 @@ SIMULATOR=./DonkeySimLinux/donkey_sim.x86_64
 DATASET_10Hz = $(shell find data_10Hz -type d | sed -e '1d' | tr '\n' ' ')
 DATASET_05Hz = $(shell find data_05Hz -type d | sed -e '1d' | tr '\n' ' ')
 
-DATASET = $(shell find data -type d | sed -e '1d' | tr '\n' ' ')
-START = $(shell find data_10Hz -name 'start*' -type d | tr '\n' ' ')
-PRE = $(shell find data_10Hz -name 'pre*' -type d | tr '\n' ' ')
-DAKOU = $(shell find data_10Hz -name 'dakou' -type d | tr '\n' ' ')
-DATASET_LINEAR = $(DATASET) $(START) $(PRE) $(DAKOU)
-DATASET_SEQ2 = $(DATASET) $(START) $(PRE) $(DAKOU)
-DATASET_SEQ3 = $(DATASET) $(START) $(PRE) $(DAKOU)
+MAIN_DATASET = $(shell find data -type d | sed -e '1d' | tr '\n' ' ')
+MAIN_START = $(shell find data_10Hz -name 'start*_v2' -type d | tr '\n' ' ')
+#PRE = $(shell find data_10Hz -name 'pre*' -type d | tr '\n' ' ')
+MAIN_LAP = $(shell find data_10Hz -name 'pre*' -type d | tr '\n' ' ')
+MAIN_DAKOU = $(shell find data_10Hz -name 'dakou' -type d | tr '\n' ' ')
+DATASET_LINEAR = $(MAIN_DATASET) $(MAIN_START) $(MAIN_LAP) $(MAIN_DAKOU)
+DATASET_SEQ2 = $(DATASET_LINEAR)
+DATASET_SEQ3 = $(DATASET_LINEAR) 
 
 COMMA=,
 EMPTY=
