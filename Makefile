@@ -21,7 +21,7 @@ DATASET_10Hz = $(shell find data_10Hz -type d | sed -e '1d' | tr '\n' ' ')
 DATASET_05Hz = $(shell find data_05Hz -type d | sed -e '1d' | tr '\n' ' ')
 
 MAIN_DATASET = $(shell find data -type d | sed -e '1d' | tr '\n' ' ')
-MAIN_START = $(shell find data_10Hz -name 'start*_v2' -type d | tr '\n' ' ')
+MAIN_START = $(shell find data_10Hz -name 'start*' -type d | tr '\n' ' ')
 #PRE = $(shell find data_10Hz -name 'pre*' -type d | tr '\n' ' ')
 MAIN_LAP = $(shell find data_10Hz -name 'lap_*' -type d | tr '\n' ' ')
 MAIN_DAKOU = $(shell find data_10Hz -name 'dakou' -type d | tr '\n' ' ')
