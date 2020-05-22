@@ -25,6 +25,8 @@ START = $(shell find data_10Hz -name 'start*' -type d | tr '\n' ' ')
 PRE = $(shell find data_10Hz -name 'pre*' -type d | tr '\n' ' ')
 DAKOU = $(shell find data_10Hz -name 'dakou' -type d | tr '\n' ' ')
 DATASET_LINEAR = $(DATASET) $(START) $(PRE) $(DAKOU)
+DATASET_SEQ2 = $(DATASET) $(START) $(PRE) $(DAKOU)
+DATASET_SEQ3 = $(DATASET) $(START) $(PRE) $(DAKOU)
 
 COMMA=,
 EMPTY=
@@ -108,3 +110,13 @@ left:
 
 models/linear.h5: $(DATASET_LINEAR)
 	TF_FORCE_GPU_ALLOW_GROWTH=true $(PYTHON) manage.py train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --myconfig=configs/myconfig_10Hz.py
+
+models/seq2.h5: $(DATASET_SEQ2)
+	TF_FORCE_GPU_ALLOW_GROWTH=true $(PYTHON) manage.py train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=rnn --myconfig=configs/myconfig_10Hz_seq2.py
+
+models/seq3.h5: $(DATASET_SEQ3)
+	TF_FORCE_GPU_ALLOW_GROWTH=true $(PYTHON) manage.py train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=rnn --myconfig=configs/myconfig_10Hz_seq3.py
+
+dataset:
+	make kabe
+	make sayu
