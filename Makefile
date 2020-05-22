@@ -47,6 +47,9 @@ run: prebuilt/default.h5
 run_linear: prebuilt/linear.h5
 	$(PYTHON) manage.py drive --model=$< --type=linear --myconfig=configs/myconfig_10Hz.py
 
+run_seq2: prebuilt/seq2.h5
+	$(PYTHON) manage.py drive --model=$< --type=rnn --myconfig=configs/myconfig_10Hz_seq2.py
+
 race: prebuilt/default.h5
 	$(PYTHON) manage.py drive --model=$< --type=rnn --myconfig=configs/race_10Hz.py
 
