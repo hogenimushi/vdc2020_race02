@@ -25,6 +25,7 @@ MAIN_START = $(shell find data_10Hz -name 'start*_v3' -type d | tr '\n' ' ')
 #PRE = $(shell find data_10Hz -name 'pre*' -type d | tr '\n' ' ')
 MAIN_LAP = $(shell find data_10Hz -name 'lap_*' -type d | tr '\n' ' ')
 MAIN_DAKOU = $(shell find data_10Hz -name 'dakou' -type d | tr '\n' ' ')
+
 DATASET_LINEAR = $(MAIN_DATASET) $(MAIN_START) $(MAIN_LAP) $(MAIN_DAKOU)
 DATASET_SEQ2 = $(DATASET_LINEAR)
 DATASET_SEQ3 = $(DATASET_LINEAR) 
@@ -54,17 +55,12 @@ run_seq2: prebuilt/seq2.h5
 run_seq3: prebuilt/seq3.h5
 	$(PYTHON) manage.py drive --model=$< --type=rnn --myconfig=configs/myconfig_10Hz_seq3.py
 
-<<<<<<< HEAD
 local_seq3: prebuilt/seq3.h5
 	$(PYTHON) manage.py drive --model=$< --type=rnn --myconfig=configs/local_10Hz_seq3.py
 
-
-race: prebuilt/default.h5
-	$(PYTHON) manage.py drive --model=$< --type=rnn --myconfig=configs/race_10Hz.py
-=======
 race: prebuilt/seq3.h5
 	$(PYTHON) manage.py drive --model=$< --type=rnn --myconfig=configs/race_10Hz_seq3.py
->>>>>>> dd1c2815e78adcb6e59c2c5d5a2177394f4335f2
+
 
 train:
 	make models/default.h5
