@@ -169,6 +169,12 @@ models/kabe.h5: $(DATASET_KABE)
 models/main_linear.h5: $(DATASET_MAIN)
 	TF_FORCE_GPU_ALLOW_GROWTH=true $(PYTHON) manage.py train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --myconfig=configs/myconfig_10Hz.py
 
+models/sub_linear.h5: $(DATASET_SUB)
+	TF_FORCE_GPU_ALLOW_GROWTH=true $(PYTHON) manage.py train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --myconfig=configs/myconfig_10Hz.py
+
+models/kabe_linear.h5: $(DATASET_KABE)
+	TF_FORCE_GPU_ALLOW_GROWTH=true $(PYTHON) manage.py train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --myconfig=configs/myconfig_10Hz.py
+
 dataset:
 	make kabe
 	make sayu
