@@ -115,6 +115,7 @@ dakou:
 	make dakoumigi_003
 	make dakoumigi_004
 	make dakoumigi_005
+	make dakouhidari_001
 
 dakoumigi_001:
 	$(PYTHON) scripts/trimming.py --input data_10Hz/dakoumigi_001 --output data/dakoumigi_001 --file data_10Hz/dakoumigi_001.txt
@@ -130,6 +131,10 @@ dakoumigi_004:
 
 dakoumigi_005:
 	$(PYTHON) scripts/trimming.py --input data_10Hz/dakoumigi_005 --output data/dakoumigi_005 --file data_10Hz/dakoumigi_005.txt
+
+dakouhidari_001:
+	$(PYTHON) scripts/trimming.py --input data_10Hz/dakouhidari_001 --output data/dakouhidari_001 --file data_10Hz/dakouhidari_001.txt
+
 
 sayu:
 	make right
