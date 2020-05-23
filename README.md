@@ -1,5 +1,5 @@
 # vdc2020_race02
-Dataset for virtual donkey car race #2
+This is a dataset for virtual donkey car race #2, tested on Ubuntu 16/18
 
 # Requirement
 Donkeycar, gym-donkey, and DonkeySimLinux
@@ -10,7 +10,7 @@ Donkeycar, gym-donkey, and DonkeySimLinux
 3. "make models/main_linear.h5": trains the network
 
 # Inference
-2. "make run_main_linear":  launches the simulator installed in DonkeySimLinux/
+2. "make run_main_linear":  launches the simulator installed in DonkeySimLinux/ (try make install).
 
 # Others 
 See Makefile
