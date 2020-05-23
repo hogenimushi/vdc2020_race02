@@ -21,7 +21,7 @@ DATASET_10Hz = $(shell find data_10Hz -type d | sed -e '1d' | tr '\n' ' ')
 DATASET_05Hz = $(shell find data_05Hz -type d | sed -e '1d' | tr '\n' ' ')
 
 MAIN_DATASET = $(shell find data -type d | sed -e '1d' | tr '\n' ' ')
-MAIN_START = $(shell find data_10Hz -name 'start*' -type d | tr '\n' ' ')
+MAIN_START = $(shell find data_10Hz -name 'start*_v3' -type d | tr '\n' ' ')
 #PRE = $(shell find data_10Hz -name 'pre*' -type d | tr '\n' ' ')
 MAIN_LAP = $(shell find data_10Hz -name 'lap_*' -type d | tr '\n' ' ')
 MAIN_DAKOU = $(shell find data_10Hz -name 'dakou' -type d | tr '\n' ' ')
@@ -54,12 +54,17 @@ run_seq2: prebuilt/seq2.h5
 run_seq3: prebuilt/seq3.h5
 	$(PYTHON) manage.py drive --model=$< --type=rnn --myconfig=configs/myconfig_10Hz_seq3.py
 
+<<<<<<< HEAD
 local_seq3: prebuilt/seq3.h5
 	$(PYTHON) manage.py drive --model=$< --type=rnn --myconfig=configs/local_10Hz_seq3.py
 
 
 race: prebuilt/default.h5
 	$(PYTHON) manage.py drive --model=$< --type=rnn --myconfig=configs/race_10Hz.py
+=======
+race: prebuilt/seq3.h5
+	$(PYTHON) manage.py drive --model=$< --type=rnn --myconfig=configs/race_10Hz_seq3.py
+>>>>>>> dd1c2815e78adcb6e59c2c5d5a2177394f4335f2
 
 train:
 	make models/default.h5
@@ -119,6 +124,8 @@ dakou:
 	make dakoumigi_003
 	make dakoumigi_004
 	make dakoumigi_005
+	make dakouhidari_001
+	make dakouhidari_002
 
 dakoumigi_001:
 	$(PYTHON) scripts/trimming.py --input data_10Hz/dakoumigi_001 --output data/dakoumigi_001 --file data_10Hz/dakoumigi_001.txt
@@ -134,6 +141,13 @@ dakoumigi_004:
 
 dakoumigi_005:
 	$(PYTHON) scripts/trimming.py --input data_10Hz/dakoumigi_005 --output data/dakoumigi_005 --file data_10Hz/dakoumigi_005.txt
+
+dakouhidari_001:
+	$(PYTHON) scripts/trimming.py --input data_10Hz/dakouhidari_001 --output data/dakouhidari_001 --file data_10Hz/dakouhidari_001.txt
+
+dakouhidari_002:
+	$(PYTHON) scripts/trimming.py --input data_10Hz/dakouhidari_002 --output data/dakouhidari_002 --file data_10Hz/dakouhidari_002.txt
+
 
 sayu:
 	make right
