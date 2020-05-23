@@ -22,6 +22,7 @@ SUB_LR    = $(shell find data -type d -name 'trim*' |  tr '\n' ' ')
 
 DATASET_SUB = $(SUB_DAKOU) $(SUB_LR) $(MAIN_START) $(MAIN_LAP) 
 DATASET_MAIN = $(MAIN_DATASET) $(MAIN_START) $(MAIN_PRE) $(MAIN_LAP) 
+DATASET_KABE = $(MAIN_DATASET) $(MAIN_START) $(MAIN_LAP) 
 
 
 COMMA=,
@@ -162,7 +163,7 @@ models/sub.h5: $(DATASET_SUB)
 models/main4.h5: $(DATASET_MAIN)
 	TF_FORCE_GPU_ALLOW_GROWTH=true $(PYTHON) manage.py train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=rnn --myconfig=configs/myconfig_10Hz_seq4.py
 
-models/kabe.h5: $(DATASET_LINEAR)
+models/kabe.h5: $(DATASET_KABE)
 	TF_FORCE_GPU_ALLOW_GROWTH=true $(PYTHON) manage.py train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=rnn --myconfig=configs/myconfig_10Hz_seq3.py
 
 
