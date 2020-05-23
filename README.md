@@ -2,7 +2,7 @@
 This is a dataset for virtual donkey car race #2, tested on Ubuntu 16/18
 
 # Requirement
-Donkeycar, gym-donkey, and DonkeySimLinux
+Donkeycar, gym-donkey, (tensorflow 1.15.0), and DonkeySimLinux
 
 # Learning
 1. "make clean" : removes all the files in models/ and data/ 
