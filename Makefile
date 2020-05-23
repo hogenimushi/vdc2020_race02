@@ -53,6 +53,9 @@ local_seq3: prebuilt/seq3.h5
 race: prebuilt/seq3.h5
 	$(PYTHON) manage.py drive --model=$< --type=rnn --myconfig=configs/race_10Hz_seq3.py
 
+race_linear: models/linear.h5
+	$(PYTHON) manage.py drive --model=$< --type=linear --myconfig=configs/race_40Hz.py
+
 
 record: record10
 
