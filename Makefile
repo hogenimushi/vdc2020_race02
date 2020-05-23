@@ -21,6 +21,7 @@ SUB_DAKOU = $(shell find data -type d -name 'dakou*' |  tr '\n' ' ')
 SUB_LR    = $(shell find data -type d -name 'trim*' |  tr '\n' ' ')
 
 DATASET_SUB = $(SUB_DAKOU) $(SUB_LR) $(MAIN_START) $(MAIN_LAP) 
+DATASET_MAIN = $(MAIN_DATASET) $(MAIN_START) $(MAIN_PRE) $(MAIN_LAP) 
 
 
 COMMA=,
