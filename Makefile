@@ -54,8 +54,8 @@ run_seq2: prebuilt/seq2.h5
 run_seq3: prebuilt/seq3.h5
 	$(PYTHON) manage.py drive --model=$< --type=rnn --myconfig=configs/myconfig_10Hz_seq3.py
 
-race: prebuilt/default.h5
-	$(PYTHON) manage.py drive --model=$< --type=rnn --myconfig=configs/race_10Hz.py
+race: prebuilt/seq3.h5
+	$(PYTHON) manage.py drive --model=$< --type=rnn --myconfig=configs/race_10Hz_seq3.py
 
 train:
 	make models/default.h5
