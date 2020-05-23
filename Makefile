@@ -162,6 +162,9 @@ models/sub.h5: $(DATASET_SUB)
 models/main4.h5: $(DATASET_MAIN)
 	TF_FORCE_GPU_ALLOW_GROWTH=true $(PYTHON) manage.py train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=rnn --myconfig=configs/myconfig_10Hz_seq4.py
 
+models/kabe.h5: $(DATASET_LINEAR)
+	TF_FORCE_GPU_ALLOW_GROWTH=true $(PYTHON) manage.py train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=rnn --myconfig=configs/myconfig_10Hz_seq3.py
+
 
 dataset:
 	make kabe
