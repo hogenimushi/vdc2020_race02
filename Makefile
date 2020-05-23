@@ -4,31 +4,24 @@
 PYTHON=python3
 SIMULATOR=./DonkeySimLinux/donkey_sim.x86_64
 
-#START_20HZ  = $(shell find data_20Hz -name 'start*' -type d | tr '\n' ' ')
-#LAP_20HZ    = $(shell find data_20Hz -name 'lap*' -type d | tr '\n' ' ')
-#nOTHERS_20HZ = data_20Hz/right_001 data_20Hz/left_001 data_20Hz/middle_001
-#GEN_20HZ    = $(shell find data_generated_20Hz -type d | sed -e '1d' | tr '\n' ' ')
-
-#DATASET_20HZ = $(START_20HZ) $(LAP_20HZ) $(OTHERS_20HZ) $(GEN_20HZ)
-
-#START_10HZ  = $(shell find data_10Hz -name 'start*' -type d | tr '\n' ' ')
-#LAP_10HZ    = $(shell find data_10Hz -name 'lap*'   -type d | tr '\n' ' ')
-#OTHERS_10HZ = data_10Hz/slow_01 
-#GEN_10HZ    = $(shell find data_generated_10Hz      -type d | sed -e '1d' | tr '\n' ' ')
-#ALL_10HZ    = $(START_10HZ) $(LAP_10HZ) $(OTHERS_10HZ) $(GEN_10HZ)
-
 DATASET_10Hz = $(shell find data_10Hz -type d | sed -e '1d' | tr '\n' ' ')
 DATASET_05Hz = $(shell find data_05Hz -type d | sed -e '1d' | tr '\n' ' ')
 
 MAIN_DATASET = $(shell find data -type d | sed -e '1d' | tr '\n' ' ')
 MAIN_START = $(shell find data_10Hz -name 'start*_v3' -type d | tr '\n' ' ')
-#PRE = $(shell find data_10Hz -name 'pre*' -type d | tr '\n' ' ')
+MAIN_PRE = $(shell find data_10Hz -name 'pre_*' -type d | tr '\n' ' ')
 MAIN_LAP = $(shell find data_10Hz -name 'lap_*' -type d | tr '\n' ' ')
 #MAIN_DAKOU = $(shell find data_10Hz -name 'dakou' -type d | tr '\n' ' ')
 
-DATASET_LINEAR = $(MAIN_DATASET) $(MAIN_START) $(MAIN_LAP) 
+DATASET_LINEAR = $(MAIN_DATASET) $(MAIN_START) $(MAIN_PRE) $(MAIN_LAP) 
 DATASET_SEQ2 = $(DATASET_LINEAR)
 DATASET_SEQ3 = $(DATASET_LINEAR) 
+
+SUB_DAKOU = $(shell find data -type d -name 'dakou*' |  tr '\n' ' ')
+SUB_LR    = $(shell find data -type d -name 'trim*' |  tr '\n' ' ')
+
+DATASET_SUB = $(SUB_DAKOU) $(SUB_LR) $(MAIN_START) $(MAIN_LAP) 
+
 
 COMMA=,
 EMPTY=
@@ -42,9 +35,6 @@ none:
 sim:
 	$(SIMULATOR) &
 	@echo "Lounching simulator..."
-
-run: prebuilt/default.h5
-	$(PYTHON) manage.py drive --model=$< --type=rnn --myconfig=configs/myconfig_10Hz.py
 
 run_linear: prebuilt/linear.h5
 	$(PYTHON) manage.py drive --model=$< --type=linear --myconfig=configs/myconfig_10Hz.py
@@ -62,12 +52,6 @@ race: prebuilt/seq3.h5
 	$(PYTHON) manage.py drive --model=$< --type=rnn --myconfig=configs/race_10Hz_seq3.py
 
 
-train:
-	make models/default.h5
-
-prebullt/default.h5: models/default.h5
-	cp $< $@
-
 record: record10
 
 record05:
@@ -80,8 +64,6 @@ record20:
 	$(PYTHON) manage.py drive --js --myconfig=configs/myconfig_20Hz.py
 
 
-models/default.h5: $(DATASET_10Hz)
-	TF_FORCE_GPU_ALLOW_GROWTH=true $(PYTHON) manage.py train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=rnn --myconfig=configs/myconfig_10Hz.py
 
 # This shows how to use trim
 trim_crash_001:
@@ -169,6 +151,16 @@ models/seq2.h5: $(DATASET_SEQ2)
 
 models/seq3.h5: $(DATASET_SEQ3)
 	TF_FORCE_GPU_ALLOW_GROWTH=true $(PYTHON) manage.py train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=rnn --myconfig=configs/myconfig_10Hz_seq3.py
+
+models/main.h5: $(DATASET_MAIN)
+	TF_FORCE_GPU_ALLOW_GROWTH=true $(PYTHON) manage.py train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=rnn --myconfig=configs/myconfig_10Hz_seq3.py
+
+models/sub.h5: $(DATASET_SUB)
+	TF_FORCE_GPU_ALLOW_GROWTH=true $(PYTHON) manage.py train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=rnn --myconfig=configs/myconfig_10Hz_seq3.py
+
+models/main4.h5: $(DATASET_MAIN)
+	TF_FORCE_GPU_ALLOW_GROWTH=true $(PYTHON) manage.py train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=rnn --myconfig=configs/myconfig_10Hz_seq4.py
+
 
 dataset:
 	make kabe
