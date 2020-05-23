@@ -10,7 +10,7 @@ Donkeycar, gym-donkey, and DonkeySimLinux
 3. "make models/main_linear.h5": trains the network
 
 # Inference
-2. "make run_main_linear":  launches the installed in DonkeySimLinux/
+2. "make run_main_linear":  launches the simulator installed in DonkeySimLinux/
 
 # Others 
 See Makefile
