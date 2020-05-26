@@ -36,7 +36,7 @@ none:
 
 sim:
 	$(SIMULATOR) &
-	@echo "Lounching simulator..."
+	@echo "Launching simulator..."
 
 run_linear: prebuilt/linear.h5
 	$(PYTHON) manage.py drive --model=$< --type=linear --myconfig=configs/myconfig_10Hz.py
