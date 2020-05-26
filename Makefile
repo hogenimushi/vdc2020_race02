@@ -180,7 +180,10 @@ models/sub_linear.h5: $(DATASET_SUB)
 models/kabe_linear.h5: $(DATASET_KABE)
 	TF_FORCE_GPU_ALLOW_GROWTH=true $(PYTHON) manage.py train --tub=$(subst $(SPACE),$(COMMA),$^) --model=$@ --type=linear --myconfig=configs/myconfig_10Hz.py
 
+movie/main_linear.mp4:
+	donkey makemovie --tub data_10Hz/lap_001 --out $@ --type linear --model prebuilt/main_linear.h5 --salient
+
 dataset:
 	make kabe
 	make sayu
-	make dakou
+	make dakou 
