@@ -11,7 +11,6 @@ MAIN_DATASET = $(shell find data -type d | sed -e '1d' | tr '\n' ' ')
 MAIN_START = $(shell find data_10Hz -name 'start*_v3' -type d | tr '\n' ' ')
 MAIN_PRE = $(shell find data_10Hz -name 'pre_*' -type d | tr '\n' ' ')
 MAIN_LAP = $(shell find data_10Hz -name 'lap_*' -type d | tr '\n' ' ')
-#MAIN_DAKOU = $(shell find data_10Hz -name 'dakou' -type d | tr '\n' ' ')
 
 DATASET_LINEAR = $(MAIN_DATASET) $(MAIN_START) $(MAIN_PRE) $(MAIN_LAP) 
 DATASET_SEQ2 = $(DATASET_LINEAR)
@@ -36,7 +35,7 @@ none:
 
 sim:
 	$(SIMULATOR) &
-	@echo "Lounching simulator..."
+	@echo "Launching simulator..."
 
 run_linear: prebuilt/linear.h5
 	$(PYTHON) manage.py drive --model=$< --type=linear --myconfig=configs/myconfig_10Hz.py
